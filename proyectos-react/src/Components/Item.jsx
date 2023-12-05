@@ -11,22 +11,22 @@ export const Item = ({
 }) => {
   return (
     <li key={item.id}>
-                        {item.id === editingTaskId ? (
-                            <div>
-                                <input
-                                    type='text'
-                                    value={editedTaskText}
-                                    onChange={(e) => setEditedTaskText(e.target.value)}
-                                />
-                                <button onClick={handleSaveEdit}>Guardar</button>
-                            </div>
-                        ) : (
-                            <div>
-                                {item.title}
-                                <button onClick={() => handleDelete(item.id)}>Borrar tarea</button>
-                                <button onClick={() => handleEdit(item.id)}>Editar tarea</button>
-                            </div>
-                        )}
-                    </li>
+      {item.id === editingTaskId ? (
+          <div>
+              <input
+                  type='text'
+                  value={editedTaskText}
+                  onChange={(e) => setEditedTaskText(e.target.value)}
+              />
+              <button onClick={handleSaveEdit}>Guardar</button>
+          </div>
+      ) : (
+          <div>
+              {item.title}
+              <button onClick={() => handleDelete(item.id)}>Borrar tarea</button>
+              <button onClick={() => handleEdit(item.id)}>Editar tarea</button>
+          </div>
+      )}
+    </li>
   )
 }
