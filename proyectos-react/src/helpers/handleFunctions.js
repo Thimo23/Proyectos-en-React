@@ -17,6 +17,10 @@ export const handleFunctions = {
       setEditingTaskId(null);
       setEditedTaskText('');
     },
+
+    handleComplete: (completed,setCompleted) => {
+      setCompleted(!completed)
+    },
   
     onAddTask: (array, val, setArray) => {
       if (val.trim() === '') return;

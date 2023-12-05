@@ -4,7 +4,9 @@ export const Item = ({
   item,
   editingTaskId,
   editedTaskText,
+  completed,
   handleEdit,
+  handleComplete,
   handleSaveEdit,
   handleDelete,
   setEditedTaskText
@@ -21,8 +23,12 @@ export const Item = ({
               <button onClick={handleSaveEdit}>Guardar</button>
           </div>
       ) : (
-          <div>
-              {item.title}
+          <div className={`task ${completed ? 'completed' : ''}`}>
+            <label>
+            <input type='checkbox' checked={completed} onChange={handleComplete}/>
+            {item.title}
+            </label>
+             
               <button onClick={() => handleDelete(item.id)}>Borrar tarea</button>
               <button onClick={() => handleEdit(item.id)}>Editar tarea</button>
           </div>
