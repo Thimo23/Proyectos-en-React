@@ -18,8 +18,18 @@ export const handleFunctions = {
       setEditedTaskText('');
     },
 
-    handleComplete: (completed,setCompleted) => {
-      setCompleted(!completed)
+    handleComplete: (setArray,setCompleted, taskId, setCompletedId) => {
+      setArray((prevTasks) => {
+        return prevTasks.map((task) => {
+          if (task.id === taskId) {
+            return { ...task, completed: !task.completed };
+          }
+          return task;
+        });
+      });
+    
+      setCompletedId(taskId);
+      setCompleted((prevCompleted) => !prevCompleted);
     },
   
     onAddTask: (array, val, setArray) => {
