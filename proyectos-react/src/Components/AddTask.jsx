@@ -24,8 +24,9 @@ export const AddTask = ({addTask}) => {
         setError('');
     }
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className='col-11 mx-auto mb-4'>
         <input 
+        className='form-control'
         type='text'
         placeholder='Ingresa una nueva tarea...'
         value={inputValue}

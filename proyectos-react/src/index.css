@@ -1,4 +1,32 @@
+body{
+  margin:0;
+  padding:0;
+}
+h1{
+  text-align: center;
+  margin-top: 50px;
+}
+h2{
+  font-size: 12px;
+  display: flex;
+  justify-content:space-around;
+}
+.rounded-checkbox{
+  border-radius: 50%;
+}
 
-  .task.completed {
-    background-color: lightgreen; 
-  }
+.task.completed {
+     
+}
+
+.custom-checkbox {
+  margin-right: 7px;
+  width: 19px;
+  height: 19px;
+}
+
+.custom-checkbox:checked {
+  background-color: #2ecc71; 
+  border: 1px solid #2ecc71; 
+  
+}

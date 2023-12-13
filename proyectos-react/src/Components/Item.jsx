@@ -5,42 +5,46 @@ export const Item = ({
   editingTaskId,
   editedTaskText,
   handleEdit,
-  handleComplete,
+  handleComplete,  // No es necesario pasar setCompletedId y setCompleted aquí
   handleSaveEdit,
   handleDelete,
   setEditedTaskText,
-  setCompletedId,
 }) => {
-  const [completed, setCompleted] = useState(item.completed || false);
+  
 
   return (
-    <li key={item.id}>
-      {item.id === editingTaskId ? (
-        <div>
-          <input
-            type='text'
-            value={editedTaskText}
-            onChange={(e) => setEditedTaskText(e.target.value)}
-          />
-          <button onClick={handleSaveEdit}>Guardar</button>
-        </div>
-      ) : (
-        <div className={`task ${completed ? 'completed' : ''}`}>
-          <label>
+    <li className='list-group-item d-flex justify-content-between align-items-center' key={item.id}>
+      <div className='col-8'>
+        {item.id === editingTaskId ? (
+          <div>
             <input
-              type='checkbox'
-              checked={completed}
-              onChange={() => {
-                setCompleted(!completed);
-                handleComplete(setCompleted, item.id, setCompletedId);
-              }}
+              className='form-control'
+              type='text'
+              value={editedTaskText}
+              onChange={(e) => setEditedTaskText(e.target.value)}
             />
-            {item.title}
-          </label>
-          <button onClick={() => handleDelete(item.id)}>Borrar tarea</button>
-          <button onClick={() => handleEdit(item.id)}>Editar tarea</button>
-        </div>
-      )}
+            <button onClick={handleSaveEdit} className='btn btn-primary'>Guardar</button>
+          </div>
+        ) : (
+          <div className={`task ${item.completado ? 'completed' : ''}`}>
+            <label>
+              <input
+                className='form-check-input rounded-4 custom-checkbox'
+                type='checkbox'
+                // maneja handlecomplete aca
+                checked={item.completado}
+                onChange={() => handleComplete(item.id)}
+              />
+              {item.title}
+            </label>
+          </div>
+        )}
+      </div>
+
+      <div className='col-4 d-flex justify-content-end'>
+        <button onClick={() => handleEdit(item.id)} className='btn btn-warning rounded-circle'><i className="bi bi-pencil-square"></i></button>
+        <button onClick={() => handleDelete(item.id)} className='btn btn-danger rounded-circle'><i className="bi bi-x-circle"></i></button>
+      </div>
     </li>
   );
 };

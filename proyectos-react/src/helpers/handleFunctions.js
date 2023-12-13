@@ -18,25 +18,19 @@ export const handleFunctions = {
       setEditedTaskText('');
     },
 
-    handleComplete: (setArray,setCompleted, taskId, setCompletedId) => {
-      setArray((prevTasks) => {
-        return prevTasks.map((task) => {
-          if (task.id === taskId) {
-            return { ...task, completed: !task.completed };
-          }
-          return task;
-        });
-      });
-    
-      setCompletedId(taskId);
-      setCompleted((prevCompleted) => !prevCompleted);
+    handleComplete: (array, taskId, setArray) => {
+      const updatedTasks = array.map(task =>
+        task.id === taskId ? { ...task, completado: !task.completado } : task
+      );
+      setArray(updatedTasks);
     },
   
     onAddTask: (array, val, setArray) => {
       if (val.trim() === '') return;
       const data = {
         title: val.trim(),
-        id: array.length + 1
+        id: array.length + 1,
+        completado:false
       };
       setArray([...array, data]);
     },
