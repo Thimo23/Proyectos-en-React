@@ -34,5 +34,45 @@ export const handleFunctions = {
       };
       setArray([...array, data]);
     },
+
+    numTareas: (array) => {
+      const numTareas = array.length;
+      return {
+        value: numTareas,
+        className: numTareas > 0 ? 'rojo' : '',
+      };
+    },
+  
+    numTareasPendientes: (array) => {
+      const numTareasPendientes = array.filter(item => !item.completado).length;
+      return {
+        value: numTareasPendientes,
+        className: numTareasPendientes > 0 ? 'rojo' : '',
+      };
+    },
+    handleCompleted:(array) => {
+      return array.filter(item=> item.completado);
+    },
+    
+    getFilteredTask:(taskFilter,array) => {
+      switch(taskFilter) {
+        case 'completed' :
+          return handleFunctions.handleCompleted(array);
+        case 'pending':
+          return array.filter(item => !item.completado);
+        case 'all':
+          default:
+            return array;
+      }
+    },
+
+    getDataFromLocalStorage: () => {
+      const storedData = localStorage.getItem('myData');
+      return storedData? JSON.parse(storedData) : [];
+    },
+
+    setDataToLocalStorage: (data) => {
+      localStorage.setItem('myData', JSON.stringify(data));
+    }
   };
   
