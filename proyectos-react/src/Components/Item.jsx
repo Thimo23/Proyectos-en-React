@@ -10,7 +10,20 @@ export const Item = ({
   handleDelete,
   setEditedTaskText,
   taskFilter,
+  handleError
 }) => {
+  const [editError, setEditError] = useState('');
+
+  const handleSaveEditWithValidation = () => {
+    const error = handleError(editedTaskText);
+
+    if (error) {
+      setEditError(error);
+    } else {
+      setEditError('');
+      handleSaveEdit(); // Llamar a handleSaveEdit solo si no hay errores
+    }
+  };
   return (
     <li className='list-group-item d-sm-flex justify-content-between' key={item.id}>
       {item.id === editingTaskId ? (
@@ -22,9 +35,10 @@ export const Item = ({
               value={editedTaskText}
               onChange={(e) => setEditedTaskText(e.target.value)}
             />
-            <button onClick={handleSaveEdit} className='btn btn-primary'>
+            <button onClick={handleSaveEditWithValidation} className='btn btn-primary'>
               Guardar
             </button>
+            {editError && <span style={{ color: 'red', marginTop: '0.1rem', marginLeft:'0.1rem' }}>{editError}</span>}
           </div>
         </div>
       ) : (

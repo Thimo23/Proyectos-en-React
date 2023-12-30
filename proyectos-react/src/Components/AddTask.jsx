@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { handleFunctions } from '../helpers/handleFunctions';
 
 export const AddTask = ({ addTask }) => {
+
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
 
@@ -10,23 +12,16 @@ export const AddTask = ({ addTask }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-
-    if (inputValue.trim() === '') {
-      setError('El campo no puede estar vacío');
-      return;
+    
+    if(handleFunctions.handleError(inputValue)===''){
+        addTask(inputValue);
+        setInputValue('');
+        setError('');    
     }
-    if (inputValue.length <= 3) {
-      setError('La tarea debe tener al menos 4 caracteres');
-      return;
+    else {
+      setError(handleFunctions.handleError(inputValue));
     }
-    if (inputValue.length >= 25) {
-      setError('La tarea tiene un máximo de 25 caracteres.');
-      return;
-    }
-
-    addTask(inputValue);
-    setInputValue('');
-    setError('');
+    
   };
 
   return (

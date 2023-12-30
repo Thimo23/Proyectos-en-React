@@ -56,6 +56,7 @@ export const Tasks = () => {
                 handleComplete={() => handleFunctions.handleComplete(array, item.id, setArray)}
                 setEditedTaskText={setEditedTaskText}
                 taskFilter={taskFilter}
+                handleError={handleFunctions.handleError}
               />
             ))}
           </ul>
