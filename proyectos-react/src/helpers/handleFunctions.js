@@ -29,8 +29,8 @@ export const handleFunctions = {
       return('El campo no puede estar vacío');
     } else if (inputValue.length <= 3) {
       return('La tarea debe tener al menos 4 caracteres');
-    } else if (inputValue.length >= 25) {
-      return('La tarea tiene un máximo de 25 caracteres.');
+    } else if (inputValue.length > 35) {
+      return('La tarea tiene un máximo de 35 caracteres.');
     } else {
       return('');
     }
@@ -61,14 +61,11 @@ export const handleFunctions = {
       className: numTareasPendientes > 0 ? 'rojo' : '',
     };
   },
-  handleCompleted:(array) => {
-    return array.filter(item=> item.completado);
-  },
   
   getFilteredTask:(taskFilter,array) => {
     switch(taskFilter) {
       case 'completed' :
-        return handleFunctions.handleCompleted(array);
+        return array.filter(item=> item.completado);
       case 'pending':
         return array.filter(item => !item.completado);
       case 'all':
@@ -84,5 +81,10 @@ export const handleFunctions = {
 
   setDataToLocalStorage: (data) => {
     localStorage.setItem('myData', JSON.stringify(data));
-  }
+  },
+
+  clearCompletedTasks: (tasks, setTasks) => {
+    const updatedTasks = tasks.filter((task) => !task.completado);
+    setTasks(updatedTasks);
+  },
 };

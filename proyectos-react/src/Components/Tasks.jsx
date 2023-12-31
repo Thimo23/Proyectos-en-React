@@ -15,7 +15,7 @@ export const Tasks = () => {
 
   const selectedList = handleFunctions.getFilteredTask(taskFilter, array);
 
-  const { value: numT, className: numTclass } = handleFunctions.numTareas(array);
+  const { value: numT} = handleFunctions.numTareas(array);
   const { value: numTp, className: numtpClass } = handleFunctions.numTareasPendientes(array);
 
   return (
@@ -43,6 +43,11 @@ export const Tasks = () => {
           </div>
 
           <AddTask addTask={(val) => handleFunctions.onAddTask(array, val, setArray)} />
+          <div className='row'>
+          <button className='col-lg-6 col-md-6 col-sm-8 col-11 btn btn-primary mx-auto mb-3' onClick={() => handleFunctions.clearCompletedTasks(array, setArray)}>
+  Eliminar tareas completadas
+</button>
+          </div>
           <ul className='list-group mb-2'>
             {selectedList.map((item) => (
               <Item
