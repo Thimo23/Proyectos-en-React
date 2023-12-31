@@ -20,7 +20,7 @@ export const Tasks = () => {
 
   return (
     <>
-      <div className='row border rounded-3 mt-4 mb-3'>
+      <div className='row border rounded-3 mt-4 mb-3 custom'>
         <div className='col-12'>
           <h1>Lista de tareas</h1>
           <div className='row mb-3'>
@@ -44,11 +44,11 @@ export const Tasks = () => {
 
           <AddTask addTask={(val) => handleFunctions.onAddTask(array, val, setArray)} />
           <div className='row'>
-          <button className='col-lg-6 col-md-6 col-sm-8 col-11 btn btn-primary mx-auto mb-3' onClick={() => handleFunctions.clearCompletedTasks(array, setArray)}>
+          <button className='col-lg-4 col-md-6 col-sm-8 col-11 btn btn-primary mx-auto mb-3 text-truncate' onClick={() => handleFunctions.clearCompletedTasks(array, setArray)}>
   Eliminar tareas completadas
 </button>
           </div>
-          <ul className='list-group mb-2'>
+          <ul className='list-group mb-2 custom-ul'>
             {selectedList.map((item) => (
               <Item
                 key={item.id}

@@ -57,7 +57,7 @@ export const Item = ({
         <div className='col-lg-4 col-md-6 d-md-flex justify-content-end'>
           <button
             onClick={() => handleDelete(item.id)}
-            className='btn btn-danger rounded-5'
+            className='btn btn-danger btn-sm rounded-5'
           >
             <i className='bi bi-x-circle'></i>
           </button>
@@ -66,13 +66,13 @@ export const Item = ({
         <div className='col-lg-4 col-md-6 d-md-flex justify-content-end'>
           <button
             onClick={() => handleEdit(item.id)}
-            className='btn btn-warning rounded-5'
+            className='btn btn-warning btn-sm rounded-5'
           >
             <i className='bi bi-pencil-square'></i>
           </button>
           <button
             onClick={() => handleDelete(item.id)}
-            className='btn btn-danger rounded-5'
+            className='btn btn-danger btn-sm rounded-5'
           >
             <i className='bi bi-x-circle'></i>
           </button>
